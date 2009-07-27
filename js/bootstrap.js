@@ -1,15 +1,3 @@
-/* Tarpipe / Yahoo! Pipes proxy
-
-Description:
-Allows you to process information in a Tarpipe workflow using a Yahoo! Pipe.
-
-Usage:
-Set proxy URL as serviceURL for a Tarpipe REST connector. Available query string parameters:
-* pipeId (required) - the ID of the Yahoo! Pipe to use (the '_id' part of the URL on the pipe's page)
-* postBinId - the unique ID of the PostBin to log activity to (http://postbin.org/<postBinId>)
-
-*/
-
 system.use("com.joyent.Sammy");
 system.use("com.joyent.Resource");
 system.use("org.json.json2");
@@ -19,7 +7,7 @@ function debug() {} // override by calling setDebug with a postbin ID to log to
 function setDebug(postBinId) {
 	debug = function(message) {
 		system.http.request("POST","http://www.postbin.org/"+postBinId,['Content-Type','application/x-www-form-urlencoded'],message);
-	}
+	};
 }
 
 function merge(obj1, obj2) {
@@ -58,7 +46,7 @@ function process(params) {
 	        var encodedToPost = "title="+encodeURIComponent(items[0].title)+"&description="+encodeURIComponent(items[0].description);
 	        debug(encodedToPost);
 	        var pipeOutput = system.http.request("POST",url,['Content-Type','application/x-www-form-urlencoded'],encodedToPost);
-	        debug('pipeOutput='+pipeOutput.content);
+	        debug('pipe output='+encodeURIComponent(pipeOutput.content));
 	        if(pipeOutput && pipeOutput.content) {
 	            var content = JSON.parse(pipeOutput.content);
 	            if(content) {
@@ -96,24 +84,13 @@ GET("/", function() {
 POST("/", function() {
 	var response = "";
 	var request = this.request;
+	var method = request.method;
+	var params = getParams(request);
+	if(params.postBinId) {
+		setDebug(params.postBinId);
+	}
 	try {
-		var method = request.method;
-		debug(method);
-		switch(method) {
-			case "GET":
-				response = displayInfo();
-				break;
-			case "POST":
-				var params = getParams(request);
-				if(params.postBinId) {
-					setDebug(params.postBinId);
-				}
-				response = process(params);
-				break;
-			default: // PUT, DELETE, etc.
-				response = "method not supported";
-				break;
-		}
+		response = process(params);
 	} catch(ex) {
 		response = JSON.stringify(ex);
 		debug(response);
