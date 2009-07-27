@@ -1,0 +1,9 @@
+Tarpipe / Yahoo! Pipes proxy
+
+Description:
+Allows you to process information in a Tarpipe workflow using a Yahoo! Pipe.
+
+Usage:
+Set proxy URL as serviceURL for a Tarpipe REST connector. Available query string parameters:
+* pipeId (required) - the ID of the Yahoo! Pipe to use (the '_id' part of the URL on the pipe's page)
+* postBinId - the unique ID of the PostBin to log activity to (http://postbin.org/<postBinId>)

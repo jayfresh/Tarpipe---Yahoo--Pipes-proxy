@@ -10,13 +10,9 @@ Set proxy URL as serviceURL for a Tarpipe REST connector. Available query string
 
 */
 
+system.use("com.joyent.Sammy");
 system.use("com.joyent.Resource");
 system.use("org.json.json2");
-
-function displayInfo() {
-	var response = "Hello, this is a proxy to use between the Tarpipe REST connector and a Yahoo! Pipe. It converts the data format sent by Tarpipe into something consumable by a Pipe, assuming the pipe accepts 'title' and 'description' userInputs. The output of the pipe is sent back to Tarpipe.";
-	return response;
-}
 
 function debug() {} // override by calling setDebug with a postbin ID to log to
 
@@ -93,8 +89,13 @@ function process(params) {
 	return response;
 }
 
-function main(request) {
+GET("/", function() {
+	return redirect("/index.html");
+});
+
+POST("/", function() {
 	var response = "";
+	var request = this.request;
 	try {
 		var method = request.method;
 		debug(method);
@@ -118,7 +119,7 @@ function main(request) {
 		debug(response);
 	}
 	return response;
-}
+});
 
 /* test data for debugging:
 
