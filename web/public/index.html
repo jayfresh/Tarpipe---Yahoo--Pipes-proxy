@@ -4,7 +4,18 @@
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body>
-		<p>Hello, this is a proxy to use between the Tarpipe REST connector and a Yahoo! Pipe. It converts the data format sent by Tarpipe into something consumable by a Pipe, assuming the Pipe accepts 'title' and 'description' User inputs. The output of the pipe is sent back to Tarpipe.</p>
-		<p>Source <a href='http://github.com/jayfresh/Tarpipe---Yahoo--Pipes-proxy/tree/master'>published</a> on github.</p>
+		<h1>Hello!</h1>
+		<p>This is a proxy to use between the <a href="http://tarpipe.com">Tarpipe</a> REST connector and a <a href="http://pipes.yahoo.com">Yahoo! Pipe</a>. It converts the data format sent by Tarpipe into something consumable by a Pipe, assuming the Pipe accepts 'title' and 'description' as User inputs. The output of the pipe is sent back to Tarpipe so you can continue to use it in workflows.</p>
+		<h2>Usage:</h2>
+		<p>Set the serviceURL for your Tarpipe REST connector to the URL of this proxy. Available query string parameters:
+		<ul>
+			<li>pipeId (required) - the ID of the Yahoo! Pipe to use (the '_id' part of the URL on the pipe's page)</li>
+			<li>postBinId - the unique ID of the PostBin to log activity to (http://postbin.org/<postBinId>)</li>
+		</ul>
+		Example:<br/>
+		<code>
+			http://tarpipe-yahoopipes-proxy.smart.joyent.com/?pipeId=aa123a9b3d8c0a87e02ee579bdbf66ac&postBinId=15253zq
+		</code></p>
+		<p><a href='http://github.com/jayfresh/Tarpipe---Yahoo--Pipes-proxy/tree/master'>Open sourced</a> on github.</p>
 	</body>
 </html>

@@ -103,11 +103,11 @@ POST("/", function() {
 1) Testing the proxy
 
 when debugging, feel free to use this data (maybe you want to URL-encode the data):
-   curl -d '<data>' 'http://f7e3dbf.smart.joyent.com/?pipeId=aa123a9b3d8c0a87e02ee579bdbf66ac'
+   curl -d '<data>' 'http://f7e3dbf.smart.joyent.com/?pipeId=aa123a9b3d8c0a87e02ee579bdbf66ac&postBinId=15253zq'
    data: {"items":[{"title":"Fwd: notify.me [My Mobile Blog] - Hackspace @ The Hub","description":"","link":null}]}
 
 this is that with the data URL-encodeded and inline
-   curl -d 'data={"items":[{"title":"Fwd: notify.me [My Mobile Blog] - Hackspace @ The Hub","description":"hello %0A%0A%0A hello %0A%0A end","link":null}]}' 'http://f7e3dbf.smart.joyent.com/?pipeId=aa123a9b3d8c0a87e02ee579bdbf66ac'
+   curl -d 'data={"items":[{"title":"Fwd: notify.me [My Mobile Blog] - Hackspace @ The Hub","description":"hello hello end","link":null}]}' 'http://f7e3dbf.smart.joyent.com/?pipeId=aa123a9b3d8c0a87e02ee579bdbf66ac&postBinId=15253zq'
 
 2) Testing the Yahoo! Pipe
 

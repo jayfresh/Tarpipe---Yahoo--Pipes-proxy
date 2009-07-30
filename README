@@ -7,3 +7,6 @@ Usage:
 Set proxy URL as serviceURL for a Tarpipe REST connector. Available query string parameters:
 * pipeId (required) - the ID of the Yahoo! Pipe to use (the '_id' part of the URL on the pipe's page)
 * postBinId - the unique ID of the PostBin to log activity to (http://postbin.org/<postBinId>)
+
+Example:
+http://tarpipe-yahoopipes-proxy.smart.joyent.com/?pipeId=aa123a9b3d8c0a87e02ee579bdbf66ac&postBinId=15253zq 
