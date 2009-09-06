@@ -43,7 +43,7 @@ function process(params) {
 	    if(items) {
 	        var url = "http://pipes.yahoo.com/pipes/pipe.run?_id="+pipeId+"&_render=json";
 	        // Tarpipe only POSTs 1 item to this proxy
-	        var encodedToPost = "title="+encodeURIComponent(items[0].title)+"&description="+encodeURIComponent(items[0].description);
+	        var encodedToPost = "title="+encodeURIComponent(items[0].title)+"&deciion="+encodeURIComponent(items[0].description);
 	        debug(encodedToPost);
 	        var pipeOutput = system.http.request("POST",url,['Content-Type','application/x-www-form-urlencoded'],encodedToPost);
 	        debug('pipe output='+encodeURIComponent(pipeOutput.content));
